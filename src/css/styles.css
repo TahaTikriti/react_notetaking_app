@@ -1,67 +1,145 @@
 * {
-    margin: 0;
-    padding: 0;
-    position: relative;
-    box-sizing: border-box;
-    font-family: 'Asap', sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  font-family: "Asap", sans-serif;
 }
 
 body {
-    background-color: #cecece;
+  background-color: #303030;
 }
 
 .container {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-    padding: 0 25px;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 20px;
 }
+
 .app {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-self: center;
-    justify-content: space-between;
-  }
-  .search {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  .empty-message {
-    text-align: center;
-    width: 100%;
-  }
-  .note-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: calc(33% - 10px);
-  }
-  
-  .add-note-popup {
-    position: fixed;
-    
-    background: #fff;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  .add-note-popup button {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background: #fff;
-    cursor: pointer;
-  }
-  .add-button {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background: #fff;
-    cursor: pointer;
-    width: 100px;
-    height: 100px;
-  }
+  background: #464646;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.search {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.search input {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-button {
+  width: 100px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  float: right;
+  background-color: #37d5c4;
+}
+
+.header_message {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  margin: auto;
+}
+
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-self: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+.note-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 49%;
+  height: 200px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.note-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.note-card p {
+  margin: 0;
+}
+
+.note-card .buttons-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.note-card button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-note-popup {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 350px;
+  height: 300px;
+  margin: auto;
+}
+
+.add-note-popup .popup-buttons-container{
+  display: flex;
+}
+.add-note-popup button {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.add-note-popup input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.add-note-popup textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: none;
+}

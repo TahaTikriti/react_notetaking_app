@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const AddNotePopup = ({ note = { title: '', content: '' }, onSave, onCancel }) => {
+const AddNotePopup = ({
+  note = { title: "", content: "" },
+  onSave,
+  onCancel,
+}) => {
   const [title, setTitle] = useState(note.title);
   const [content, setContent] = useState(note.content);
 
@@ -17,12 +21,14 @@ const AddNotePopup = ({ note = { title: '', content: '' }, onSave, onCancel }) =
         onChange={(e) => setTitle(e.target.value)}
       />
       <textarea
-        placeholder="Details"
+        placeholder="Enter your note here..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
       ></textarea>
-      <button onClick={handleSave}>Save</button>
-      <button onClick={onCancel}>Cancel</button>
+      <div className="popup-buttons-container">
+        <button onClick={handleSave}>Save</button>
+        <button onClick={onCancel}>Cancel</button>
+      </div>
     </div>
   );
 };

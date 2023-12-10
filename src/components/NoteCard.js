@@ -6,8 +6,10 @@ const NoteCard = ({ note, onEdit, onDelete }) => {
     <div className="note-card">
       <h3>{note.title}</h3>
       <p>{note.content}</p>
-      <button onClick={()=> onEdit(note.id)}>Edit</button>
-      <button onClick={() => onDelete(note.id)}>Delete</button>
+      <div className='note-buttons-container'>
+        <button onClick={()=> onEdit(note.id)}>Edit</button>
+        <button onClick={() => onDelete(note.id)}>Delete</button>
+      </div>
     </div>
   );
 };
