@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const AddNotePopup = ({
-  note = { title: "", content: "" },
+  note = { id: "", title: "", content: "" },
   onSave,
   onCancel,
 }) => {
@@ -9,7 +9,7 @@ const AddNotePopup = ({
   const [content, setContent] = useState(note.content);
 
   const handleSave = () => {
-    onSave({ title, content });
+    onSave({ id: note.id, title, content });
   };
 
   return (
@@ -26,8 +26,12 @@ const AddNotePopup = ({
         onChange={(e) => setContent(e.target.value)}
       ></textarea>
       <div className="popup-buttons-container">
-        <button onClick={handleSave}>Save</button>
-        <button onClick={onCancel}>Cancel</button>
+        <button className="save-button" onClick={handleSave}>
+          Save
+        </button>
+        <button className="cancel-button" onClick={onCancel}>
+          Cancel
+        </button>
       </div>
     </div>
   );

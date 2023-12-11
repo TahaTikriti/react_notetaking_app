@@ -1,13 +1,56 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import NoteCard from "./NoteCard";
 import AddNotePopup from "./AddNotePopup";
 // import "../css/styles.css";
 
+// Action types
+const NoteActionTypes = {
+  ADD: "ADD",
+  EDIT: "EDIT",
+  DELETE: "DELETE",
+};
+
+// Reducer function
+const notesReducer = (state, action) => {
+  switch (action.type) {
+    case NoteActionTypes.ADD:
+      return {
+        ...state,
+        idCounter: state.idCounter + 1,
+        notes: [...state.notes, { ...action.payload, id: state.idCounter }],
+      };
+    case NoteActionTypes.EDIT:
+      return {
+        ...state,
+        notes: [
+          state.notes.map((note) => {
+            return note.id === action.payload.id
+              ? { ...note, ...action.payload }
+              : note;
+          }),
+        ],
+      };
+    case NoteActionTypes.DELETE:
+      return {
+        ...state,
+        notes: state.notes.filter((note) => note.id !== action.payload.id),
+      };
+    default:
+      return state;
+  }
+};
+
 function App() {
-  const [notes, setNotes] = useState([]);
+  const initialNotes = {
+    idCounter: 1,
+    notes: [],
+  };
+  const [notesState, notesDispatch] = useReducer(notesReducer, initialNotes);
+
+  // const [notes, setNotes] = useState([]);
+  // const [noteIdCounter, setNoteIdCounter] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [noteIdCounter, setNoteIdCounter] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
 
   // Add
@@ -16,8 +59,12 @@ function App() {
   };
 
   const saveAddNote = (newNote) => {
-    setNotes([...notes, { id: noteIdCounter, ...newNote }]);
-    setNoteIdCounter(noteIdCounter + 1);
+    notesDispatch({
+      type: NoteActionTypes.ADD,
+      payload: newNote,
+    });
+    // setNotes([...notes, { id: noteIdCounter, ...newNote }]);
+    // setNoteIdCounter(noteIdCounter + 1);
     cancelAddNote();
   };
 
@@ -27,16 +74,17 @@ function App() {
 
   // Edit
   const editNote = (id) => {
-    const note = notes.filter((note) => note.id === id)[0];
+    const note = notesState.notes.filter((note) => note.id === id)[0];
     setIsEditing(note);
   };
 
   const saveEditNote = (newNote) => {
-    setNotes(
-      notes.map((note) =>
-        note.id === isEditing.id ? { ...note, ...newNote } : note
-      )
-    );
+    notesDispatch({ type: NoteActionTypes.EDIT, payload: newNote });
+    // setNotes(
+    //   notes.map((note) =>
+    //     note.id === isEditing.id ? { ...note, ...newNote } : note
+    //   )
+    // );
     cancelEditNote();
   };
 
@@ -46,7 +94,7 @@ function App() {
 
   // Delete
   const deleteNote = (id) => {
-    const note = notes.filter((note) => note.id === id)[0];
+    const note = notesState.notes.filter((note) => note.id === id)[0];
     if (
       window.confirm("Are you sure you want to delete: '" + note.title + "'")
     ) {
@@ -55,7 +103,8 @@ function App() {
   };
 
   const saveDeleteNote = (id) => {
-    setNotes(notes.filter((note) => note.id !== id));
+    notesDispatch({ type: NoteActionTypes.DELETE, payload: { id } });
+    // setNotes(notes.filter((note) => note.id !== id));
   };
 
   return (
@@ -76,7 +125,7 @@ function App() {
       <div className="container">
         <div className="app">
           <div className="header_message">
-            {!notes.length && (
+            {!notesState.notes.length && (
               <p className="empty-message">
                 No notes taken yet. Click the '+' button to add a new note.
               </p>
@@ -84,7 +133,7 @@ function App() {
           </div>
           <div className="container">
             <div className="notes">
-              {notes
+              {notesState.notes
                 .filter((note) =>
                   `${note.title} ${note.content}`
                     .toLowerCase()

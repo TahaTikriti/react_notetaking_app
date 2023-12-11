@@ -22,6 +22,7 @@ body {
   padding: 20px;
   border-radius: 5px;
   margin-top: 20px;
+  box-shadow: #303030;
 }
 
 .search {
@@ -58,46 +59,61 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  align-self: center;
-  justify-content: flex-start;
-  height: 100vh;
 }
 
 .note-card {
-  border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 49%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+  width: 335px;
   height: 200px;
-  overflow: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .note-card h3 {
   margin-top: 0;
   margin-bottom: 10px;
+  color: whitesmoke;
+  font-weight: bold;
 }
-
+.note-content {
+  height: 120px;
+  overflow: hidden;
+  line-height: 1.7;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
 .note-card p {
   margin: 0;
+  color: whitesmoke;
+  white-space: pre-line;
+  max-height: 100px;
+  font-size: 12px;
 }
 
-.note-card .buttons-container {
-  display: flex;
-  justify-content: flex-end;
+.note-card .note-buttons-container {
+  text-align: right;
 }
 
 .note-card button {
   margin-right: 10px;
   padding: 5px 10px;
   border: none;
-  border-radius: 3px;
-  background: #007bff;
-  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+  border-radius: 5px;
+  background: lightskyblue;
+  color: #303030;
   cursor: pointer;
 }
 
@@ -116,15 +132,23 @@ body {
   margin: auto;
 }
 
-.add-note-popup .popup-buttons-container{
+.add-note-popup .popup-buttons-container {
   display: flex;
+  justify-content: space-around;
 }
 .add-note-popup button {
   margin-top: 10px;
-  padding: 10px;
+  padding: 5px 10px;
   border: 1px solid #ddd;
   background: #fff;
   cursor: pointer;
+  border-radius: 5px;
+}
+.add-note-popup .save-button {
+  background-color: #37d5c4;
+}
+.add-note-popup .cancel-button {
+  background-color: rgb(255, 102, 102);
 }
 
 .add-note-popup input {
@@ -137,9 +161,10 @@ body {
 
 .add-note-popup textarea {
   width: 100%;
+  height: 150px;
   padding: 10px;
   border: 1px solid #ddd;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border-radius: 5px;
   resize: none;
 }
