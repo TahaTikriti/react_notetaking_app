@@ -54,6 +54,9 @@ body {
   font-size: 20px;
   margin: auto;
 }
+.header_message span{
+  color:#37d5c4
+}
 
 .notes {
   display: flex;

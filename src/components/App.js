@@ -22,13 +22,11 @@ const notesReducer = (state, action) => {
     case NoteActionTypes.EDIT:
       return {
         ...state,
-        notes: [
-          state.notes.map((note) => {
-            return note.id === action.payload.id
-              ? { ...note, ...action.payload }
-              : note;
-          }),
-        ],
+        notes: state.notes.map((note) => {
+          return note.id === action.payload.id
+            ? { ...note, ...action.payload }
+            : note;
+        }),
       };
     case NoteActionTypes.DELETE:
       return {
@@ -127,7 +125,8 @@ function App() {
           <div className="header_message">
             {!notesState.notes.length && (
               <p className="empty-message">
-                No notes taken yet. Click the '+' button to add a new note.
+                No notes taken yet. Click the '<span>Add note</span>' button to
+                add a new note.
               </p>
             )}
           </div>
